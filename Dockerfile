@@ -1,3 +1,4 @@
+FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine as base
 
 # Copy everything else and build
 COPY ./ /opt/blogifier
