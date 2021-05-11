@@ -1,4 +1,3 @@
-FROM mcr.microsoft.com/dotnet/sdk:5.0-alpine as base
 
 # Copy everything else and build
 COPY ./ /opt/blogifier
@@ -24,7 +23,7 @@ RUN coverlet RandomQuotes.Tests/bin/Releasenetcoreapp3.1/RandomQuotes.Tests.dll 
     
 RUN dotnet sonarscanner end /d:sonar.login="token"
     
-FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine as run
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 COPY --from=base /opt/blogifier/outputs /opt/blogifier/outputs
 WORKDIR /opt/blogifier/outputs
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
