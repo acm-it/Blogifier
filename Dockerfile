@@ -17,7 +17,7 @@ COPY ./ /opt/blogifier
 RUN dotnet restore -v m
 
 RUN dotnet build --no-restore -c Release --nologo
-RUN dotnet publish -c Release -o out RandomQuotes/RandomQuotes.csproj
+RUN dotnet publish -c Release -o out RandomQuotes.csproj
 
 RUN coverlet RandomQuotes.Tests/bin/Releasenetcoreapp3.1/RandomQuotes.Tests.dll \
     --target "dotnet" --targetargs "test -c Release --no-build" --format opencover
