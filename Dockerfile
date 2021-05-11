@@ -25,7 +25,7 @@ RUN coverlet RandomQuotes.Tests/bin/Releasenetcoreapp3.1/RandomQuotes.Tests.dll 
 RUN dotnet sonarscanner end /d:sonar.login="token"
     
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-COPY --from=base /opt/blogifier/outputs /opt/blogifier/outputs
+COPY --from=build-env /opt/blogifier/outputs /opt/blogifier/outputs
 WORKDIR /opt/blogifier/outputs
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
 EXPOSE 80
