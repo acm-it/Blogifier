@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk as build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build-env
 
 # Copy everything else and build
 COPY ./ /opt/blogifier
@@ -25,7 +25,7 @@ RUN coverlet RandomQuotes.Tests/bin/Releasenetcoreapp3.1/RandomQuotes.Tests.dll 
 RUN dotnet sonarscanner end /d:sonar.login="token"
     
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-COPY --from=build-env /opt/blogifier/outputs /opt/blogifier/outputs
-WORKDIR /opt/blogifier/outputs
+COPY --from=build-env /opt/blogifier/outputs
+WORKDIR /opt/blogifier
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
 EXPOSE 80
