@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:5.0 as build-env
+FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
+
 WORKDIR /opt/blogifier
 ENV PATH="$PATH:/root/.dotnet/tools"
 
