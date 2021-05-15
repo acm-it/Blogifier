@@ -1,10 +1,12 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build-env
+WORKDIR /opt/blogifier
+ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Copy everything else and build
 COPY ./ /opt/blogifier
-WORKDIR /opt/blogifier
 
-RUN ["dotnet","publish","./src/Blogifier/Blogifier.csproj","-o","./outputs" ]
+
+#RUN ["dotnet","publish","./src/Blogifier/Blogifier.csproj","-o","./outputs" ]
 
 
 RUN apt-get update $$ apt-get install -y openjdk-11-jdk && dotnet tool install --global dotnet-sonarscanner && --global coverlet.console --version 1.7.1
