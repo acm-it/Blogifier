@@ -26,7 +26,7 @@ RUN dotnet publish -c Release -o output src/Blogifier/Blogifier.csproj
 RUN dotnet sonarscanner end /d:sonar.login="0074b6e6d156527e3594cf90631f5bcdef010127"
     
 FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine as run
+COPY --from=build-env /opt/blogifier/output /opt/blogifier/output
 WORKDIR /opt/blogifier
-COPY --from=build-env /opt/blogifier/output .
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
 #EXPOSE 80
