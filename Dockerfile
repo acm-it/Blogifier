@@ -20,13 +20,13 @@ COPY ./ /opt/blogifier
 RUN dotnet restore -v m
 
 RUN dotnet build --no-restore -c Release --nologo
-RUN dotnet publish -c Release -o out src/Blogifier/Blogifier.csproj
+RUN dotnet publish -c Release -o output src/Blogifier/Blogifier.csproj
 
 #RUN coverlet tests/Blogifier.Tests.csproj --target "dotnet" --targetargs "test -c Release --no-build" --format opencover
 RUN dotnet sonarscanner end /d:sonar.login="0074b6e6d156527e3594cf90631f5bcdef010127"
     
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-COPY --from=build-env /opt/blogifier/outputs .
 WORKDIR /opt/blogifier
+COPY --from=build-env /opt/blogifier/output .
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
 EXPOSE 80
