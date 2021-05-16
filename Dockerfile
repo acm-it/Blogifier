@@ -23,7 +23,7 @@ RUN dotnet build --no-restore -c Release --nologo
 RUN dotnet publish -c Release -o out src/Blogifier/Blogifier.csproj
 
 #RUN coverlet tests/Blogifier.Tests.csproj --target "dotnet" --targetargs "test -c Release --no-build" --format opencover
-RUN dotnet sonarscanner end /d:sonar.login="token"
+RUN dotnet sonarscanner end /d:sonar.login="0074b6e6d156527e3594cf90631f5bcdef010127"
     
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 COPY --from=build-env /opt/blogifier/outputs .
