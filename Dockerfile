@@ -25,7 +25,7 @@ RUN dotnet publish -c Release -o output src/Blogifier/Blogifier.csproj
 #RUN coverlet tests/Blogifier.Tests.csproj --target "dotnet" --targetargs "test -c Release --no-build" --format opencover
 RUN dotnet sonarscanner end /d:sonar.login="0074b6e6d156527e3594cf90631f5bcdef010127"
     
-FROM mcr.microsoft.com/dotnet/sdk:5.0
+FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine
 WORKDIR /opt/blogifier
 COPY --from=build-env /opt/blogifier/output .
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
