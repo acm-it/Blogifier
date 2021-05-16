@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build-env
-
+RUN echo "token"
 WORKDIR /opt/blogifier
 ENV PATH="$PATH:/root/.dotnet/tools"
 
