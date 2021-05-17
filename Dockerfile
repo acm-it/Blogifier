@@ -29,4 +29,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0-alpine as run
 COPY --from=build-env /opt/blogifier/output /opt/blogifier/output
 WORKDIR /opt/blogifier/output
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
-#EXPOSE 80
+EXPOSE 80
