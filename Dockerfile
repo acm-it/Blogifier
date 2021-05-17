@@ -5,7 +5,7 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Copy everything else and build
 COPY ./ /opt/blogifier
-RUN sudo rm -rf /var/lib/apt/lists/* && sudo apt update
+RUN rm -rf /var/lib/apt/lists/* && sudo apt update
 
 
 RUN head -14 /var/lib/apt/lists/partial/deb.debian.org_debian_dists_buster_InRelease
