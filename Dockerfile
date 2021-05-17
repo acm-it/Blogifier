@@ -5,13 +5,12 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 
 # Copy everything else and build
 COPY ./ /opt/blogifier
-RUN rm -rf /var/lib/apt/lists/* && apt update
-
-
-RUN head -14 /var/lib/apt/lists/partial/deb.debian.org_debian_dists_buster_InRelease
+#RUN rm -rf /var/lib/apt/lists/* && apt update
+#RUN head -14 /var/lib/apt/lists/partial/deb.debian.org_debian_dists_buster_InRelease
 #RUN ["dotnet","publish","./src/Blogifier/Blogifier.csproj","-o","./outputs" ]
 
 RUN mkdir -p /usr/share/man/man1
+RUN time
 RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
 RUN apt-get update; \
