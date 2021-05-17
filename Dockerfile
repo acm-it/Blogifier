@@ -16,6 +16,7 @@ RUN dotnet sonarscanner begin \
 COPY ./ /opt/blogifier
 RUN dotnet restore -v m
 
+#copy and build
 COPY . ./
 RUN dotnet build --no-restore -c Release --nologo
 RUN dotnet publish -c Release -o output src/Blogifier/Blogifier.csproj
