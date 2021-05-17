@@ -4,7 +4,7 @@ WORKDIR /opt/blogifier
 ENV PATH="$PATH:/root/.dotnet/tools"
 
 #install openjdk11 & sonarscanner & coverlet
-RUN apt-get update && apt-get install openjdk11 && dotnet tool install --global dotnet-sonarscanner && dotnet tool install --global coverlet.console --version 3.0.3
+RUN apt-get update && apt-get install openjdk-11-jdk && dotnet tool install --global dotnet-sonarscanner && dotnet tool install --global coverlet.console --version 3.0.3
 
 #start sonarscanner
 RUN dotnet sonarscanner begin \
@@ -14,6 +14,7 @@ RUN dotnet sonarscanner begin \
 COPY ./ /opt/blogifier
 RUN dotnet restore -v m
 
+COPY . ./
 RUN dotnet build --no-restore -c Release --nologo
 RUN dotnet publish -c Release -o output src/Blogifier/Blogifier.csproj
 
@@ -25,4 +26,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0
 WORKDIR /opt/blogifier/output
 COPY --from=build /opt/blogifier/output ./
 ENTRYPOINT ["dotnet", "Blogifier.dll"]
-#EXPOSE 80
+EXPOSE 80
