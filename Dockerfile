@@ -6,7 +6,7 @@ ENV PATH="$PATH:/root/.dotnet/tools"
 # Copy everything else and build
 COPY ./ /opt/blogifier
 
-
+RUN cat /etc/os-release
 #RUN ["dotnet","publish","./src/Blogifier/Blogifier.csproj","-o","./outputs" ]
 
 RUN mkdir -p /usr/share/man/man1
