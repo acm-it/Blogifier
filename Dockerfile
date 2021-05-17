@@ -3,6 +3,8 @@ RUN echo "token"
 WORKDIR /opt/blogifier
 ENV PATH="$PATH:/root/.dotnet/tools"
 
+#avoid openjdk error
+RUN mkdir -p /usr/share/man/man1
 #install openjdk11 & sonarscanner & coverlet
 RUN apt-get update && apt-get install -y openjdk-11-jdk && dotnet tool install --global dotnet-sonarscanner && --global coverlet.console --version 1.7.1
 
