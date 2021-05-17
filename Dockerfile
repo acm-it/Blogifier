@@ -12,7 +12,11 @@ RUN cat /etc/os-release
 RUN mkdir -p /usr/share/man/man1
 RUN wget https://packages.microsoft.com/config/debian/10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 RUN dpkg -i packages-microsoft-prod.deb
-RUN apt-get install -y aspnetcore-runtime-5.0
+RUN apt-get update; \
+    apt-get install -y apt-transport-https && \
+    apt-get update && \
+    apt-get install -y aspnetcore-runtime-5.0
+#RUN apt-get install -y aspnetcore-runtime-5.0
 
 #RUN apt-get update && apt-get install -y openjdk-11-jdk && dotnet tool install --global dotnet-sonarscanner && dotnet tool install --global coverlet.console --version 1.7.1 
 
