@@ -10,7 +10,8 @@ RUN apt-get update && apt-get install -y openjdk-11-jdk && dotnet tool install -
 
 #start sonarscanner
 RUN dotnet sonarscanner begin \
-    /n:"Org: blogifier" /v:"version_id" /k:"BF" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="0074b6e6d156527e3594cf90631f5bcdef010127"
+    /n:"Org: blogifier" /v:"version_id" /k:"BF" /d:sonar.host.url="http://localhost:9000" /d:sonar.login="0074b6e6d156527e3594cf90631f5bcdef010127" \
+    /d:sonar.cs.opencover.reportsPaths=coverage.opencover.xml
 
 #copy and restore
 COPY ./ /opt/blogifier
